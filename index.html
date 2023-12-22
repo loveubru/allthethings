@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Cabin&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+  <title>Frases de Amor</title>
+  <style>
+* {
+  margin: 0;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  cursor: none;
+}
+
+body {
+  overflow: hidden;
+  
+}
+
+input {
+  display: none;
+}
+
+/*Circle and hearts*/
+.circle {
+  background: #EF476F;
+  border-radius: 50%;
+  left: calc(50% - 10px);
+  top: 252px;
+  transition: all .5s cubic-bezier(0.22, 0.53, 0.37, 1.41);
+}
+
+.hearts, .hearts:before, .hearts:after, .circle {
+  display: block;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+}
+
+.hearts {
+  transform: rotate(-45deg);
+}
+
+.hearts:before, .hearts:after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: inherit;
+}
+
+.hearts:before {
+  left: 12px;
+}
+
+.hearts:after {
+  top: -12px;
+}
+
+#heart {
+  background: #D33F49;
+  z-index: 2;
+  pointer-events: none;
+}
+
+#heartholder {
+  top: 255px;
+  left: calc(50% - 10px);
+  cursor: none;
+  z-index: 1;
+  background: #f697e1;
+  transition: all .2s ease-in;
+}
+
+/*Transform heart into key*/
+#heartholder:hover {
+  background: #ad6a9e;
+}
+
+#heartholder:hover ~ #heart{
+  width: 7px;
+  height: 27px;
+  background: #ffcf0d;
+}
+
+#heartholder:hover ~ #heart:after {
+  left: -7px;
+  top: -19px;
+  width: 12px;
+  height: 12px;
+  background: transparent;
+  border: 5px #ffcf0d solid;
+}
+
+#heartholder:hover ~ #heart:before {
+  border-radius: 0;
+  top: 12px;
+  left: 0;
+  border-color: #ffcf0d;
+  border-width: 4px;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  background: transparent;
+  height: 9px;
+}
+
+/*Make the circle appear*/
+#heartInput:checked ~ .circle {
+  width: 400px;
+  height: 400px;
+  left: calc(50% - 200px);
+  top: 50px;
+}
+
+/*Message to the loved one*/
+.message, label.lang {
+  font-family: 'Cabin', sans-serif;
+}
+
+.message {
+  position: absolute;
+  width: 300px;
+  color: white;
+  font-size: 23px;
+  font-weight: bold;
+  text-align: center;
+  margin: 0 auto;
+  line-height: 1.5;
+  top: 150px;
+  left: calc(50% - 150px);
+}
+
+.message p:first-child {
+  margin-bottom: 70px;
+}
+.destination {
+  position: relative;
+  top: 0px; left: 5px;
+  color:#420334;
+  font-family:"Sofia", sans-serif;
+  font-size: 30px;
+  text-shadow: 3px 3px 3px #ababab;
+  font-weight: bold;
+}
+.things {
+  position: relative;
+  top: px; left: 130px;
+  color:#420334;
+  font-family:"Sofia", sans-serif;
+  font-size: 30px;
+  text-shadow: 3px 3px 3px #ababab;
+  
+}
+.love {
+  font-family: 'Lobster', cursive;
+  font-size: 40px;
+  font-weight: bold;
+}
+  </style>
+</head>
+<body>
+  <input type="checkbox" id="heartInput">
+  <label for="heartInput" class="hearts" id="heartholder"></label>
+  <span class="hearts" id="heart"></span>
+  <span class="circle"></span>
+  <div id="luanParaBruna">
+    <p class="destination">De: Luan</p>
+    <p class="destination">Para: Bruna</p>
+    <p class="things">Tudo que amo em você!</p>
+  </div>
+  <div class="message">
+    <p id="randomMessage"></p>
+    <p></p>
+    <p class="love">Eu te amo!</p>
+  </div>
+<script>
+var heart = document.getElementById('heart');
+var randomMessage = document.getElementById('randomMessage');
+var luanParaBruna = document.getElementById('luanParaBruna');
+
+document.body.onmousemove = function(event) {
+ var x = event.clientX - heart.offsetWidth / 2;
+ var y = event.clientY - heart.offsetHeight / 2;
+
+ heart.style.left = x + 'px';
+ heart.style.top = y + 'px';
+};
+
+var randomMessages = [
+"Seu brilho nos olhos quando fala/faz algo que ama ", "Sua ousadia e coragem", "Sua empatia e compaixão", 
+"O jeito que você fica fofa quando ta com vergonha", "Como me olha com esse olhar apaixonante", "Sua inteligência",
+"Sua dedicação e persistência em tudo que faz", "Sua sabedoria", "Seu temor ao Senhor", "O jeito que coloca amor em tudo que faz",
+"Seu olhar amoroso", "Você é maravilhosa", "Você é a mulher mais incrível desse mundo!", "Sua gargalhadas", "Sua alegria e risadas",
+"Sua sinceridade", "Sua intensidade", "Seu jeito amoroso e atencioso", "Sua feminilidade", "Sua beleza excepcional!",
+"Como fica linda de vestido!", "O quanto é cheirosa", "Sua doçura e ternura", "O jeito que se empolga quando gosta de algo",
+"Seu jeito animado de contar algo", "Sou seu maior fã!", "Não tem uma vez que te veja e não pense: 'sou apaixonado por ela'",
+"Seu rosto lindo!", "Seu jeito de me impulsionar", "O jeito que sonha alto!", "Sua dedicação", "Seu amor por servir",
+"O seu sorriso é como um abraço", "Sua doçura no sorriso e no olhar", "O jeito que você fala", "O jeito que você ri",
+"O jeito que me olha e reage ao que falo", "Você tem um coração de ouro", "Sua expressões", "Quando ta pensativa e concentrada",
+"Sua alegria contagiante", "Como me conquista dia após dia", "O jeito que me supreende!","O jeito que você demonstra amor",
+"Seus princípios e valores incorrompíveis", "O jeito que você se preocupa","Como fica linda de óculos", "O jeito que ora",
+"Como se dedica as coisas do Senhor", "A maneira que louva", "Seu bom gosto, principalmente pra se vestir", "Seu cabelo que é tão maravilhoso",
+"Como fica incrível de trança!", "Seus brincos, colares, acessórios que acentuam sua beleza", "Como fica fofa quando ta cansadinha haha",
+"Como fica linda com anel!!!", "O jeito que é díficil pensar perto de você", "Sua força gravitacional, me puxando pra perto",
+"O jeito que ama toque físico e tempo de qualidade", "Como é uma princesa!", "Seu cabelo tão lindo, macio e cheiroso", 
+"O quanto você é marcante", "Meu maior ponto fraco é seu olhar hahaha", "O jeito que fica feliz! Saltitante haha", "Seu nariz perfeito! Encaixando certinho no seu rostinho",
+"Seu sorriso, que é a oitava maravilha desse mundo", "Suas sobrancelhas, são ainda mais destaque pra sua beleza", "Seu queixo é tão lindo!",
+"Sua mão, é mais linda desse mundo todo!!!", "O jeito que cabe certinho no meu abraço <3", "Suas unhas são maravilhosasssss", 
+"Seu caráter incorruptível", "O jeito que sabe seu valor", "Como me chama de amor", "Seus beijinhos", "Seus braços com as pintinhas são incríveis",
+"Sua entrega e o jeito que vive os momentos!", "Sua confiança", "Sua sinceridade", "O jeito que me faz eu sentir o cara mais feliz do mundo",
+"O jeito que ama ser cuidada", "O jeito que deixa eu cuidar de você", "Sua confiança em mim", "Sua bondade", "O jeito que você reflete Jesus!",
+"Como vejo o amor e bondade de Deus na minha vida através de você", "Sua companhia e parceria", "Suas declarações de amor", "O jeito que não desiste dos seu objetivos",
+"As fotos lindas que tira!", "O jeito que me dá boa noite e bom dia <3 HAHAHAHA", "O jeito que ora forte!", "Como nosso relacionamento é lindo",
+"O jeito que Deus nos uniu", "Sua boca que é tão linda!", "O jeito que me apoia e acredita em mim", "Os gifs fofos que me manda", "Te amo por completo, meu amor!",
+"Como é tão linda!", "Como é valorosa!", "Como somos o casal perfeito um para o outro" 
+];
+
+function updateRandomMessage() {
+ var newMessage = randomMessages[Math.floor(Math.random() * randomMessages.length)];
+ document.getElementById('randomMessage').textContent = newMessage;
+}
+heartInput.addEventListener('change', function() {
+    luanParaBruna.style.opacity = this.checked ? 0 : 1;
+  });
+
+heart.addEventListener('click', function() {
+ updateRandomMessage();
+});
+
+updateRandomMessage();
+
+// Adiciona um evento de clique ao elemento `#randomMessage`
+document.getElementById('randomMessage').addEventListener('click', function() {
+ // Atualiza a frase aleatória
+ updateRandomMessage();
+
+ // Desfoca a frase atual
+ document.getElementById('randomMessage').blur();
+
+ // Focaliza a frase nova
+ document.getElementById('randomMessage').focus();
+});
+  </script>
+</body>
+</html>
